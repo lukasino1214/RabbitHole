@@ -97,4 +97,4 @@
 
 
 
-Když tohle čte Noxxo, tak zdravím jeho dvě mozkové buňky.
+Když tohle čte Noxxon, tak zdravím jeho dvě mozkové buňky.
