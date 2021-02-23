@@ -57,7 +57,7 @@ unsigned int Shader::CompileShader(unsigned type, const std::string& source) {
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
         char* message = (char*)alloca(length * sizeof(char));
         glGetShaderInfoLog(id, length, &length, message);
-        std::cout << "Dodrbal jsi shader inteligente!" << (type == GL_VERTEX_SHADER ? "vertex chytráku" : "fragment chytráku") << std::endl;
+        std::cout << "Dodrbal jsi shader inteligente!" << (type == GL_VERTEX_SHADER ? "vertex chytraku" : "fragment chytraku") << std::endl;
         std::cout << message << std::endl;
         glDeleteShader(id);
 
@@ -114,7 +114,7 @@ int Shader::GetUniformLocation(const std::string& name) {
 
     GLCall(int location = glGetUniformLocation(m_RendererID, name.c_str()));
     if (location == -1)
-        std::cout << "Warning: uniform '" << name << "' doesn't exist!" << std::endl;
+        std::cout << "Varovani: uniform '" << name << "' neexistuje!" << std::endl;
     else
         m_UniformLocationCache[name] = location;
     return location;
