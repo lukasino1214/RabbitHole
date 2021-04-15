@@ -26,34 +26,76 @@
 
 std::vector<unsigned int> searchvoxel(std::vector<glm::vec3> voxels, glm::vec3 voxel) {
 
-    unsigned int RIGHT_FACE[6] = { 1, 5, 2, 2, 5, 6 };
+
+    
+    
+    /*unsigned int RIGHT_FACE[6] = { 1, 5, 2, 2, 5, 6 };
     unsigned int LEFT_FACE[6] = { 0, 1, 3, 3, 1, 2 };
     unsigned int FORWARD_FACE[6] = { 5, 4, 6, 6, 4, 7 };
     unsigned int BACKWARD_FACE[6] = { 4, 0, 7, 7, 0, 3 };
     unsigned int DOWN_FACE[6] = { 3, 2, 7, 7, 2, 6 };
-    unsigned int UP_FACE[6] = { 4, 5, 0, 0, 5, 1 };
+    unsigned int UP_FACE[6] = { 4, 5, 0, 0, 5, 1 };*/
+    
+   
 
-    std::cout << glm::to_string(voxel) << std::endl; 
+    unsigned int UP_FACE[6] = { 4, 5, 0, 0, 5, 1 };
+    unsigned int DOWN_FACE[6] = { 3, 2, 7, 7, 2, 6 };
+    unsigned int BACKWARD_FACE[6] = { 4, 0, 7, 7, 0, 3 };
+    unsigned int RIGHT_FACE[6] = { 0, 1, 3, 3, 1, 2 };
+    unsigned int FORWARD_FACE[6] = { 1, 5, 2, 2, 5, 6 };
+    unsigned int LEFT_FACE[6] = { 5, 4, 6, 6, 4, 7 };
+
+    //std::cout << glm::to_string(voxel) << std::endl; 
 
     std::vector<unsigned int> voxel_ib;
 
-    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(2.0f, 0.0f, 0.0f)) == voxels.end())
+    /*if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(-2.0f, 0.0f, 0.0f)) == voxels.end())
         voxel_ib.insert(voxel_ib.end(), LEFT_FACE, LEFT_FACE + 6);
-
-    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(-2.0f, 0.0f, 0.0f)) == voxels.end())
+    
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(2.0f, 0.0f, 0.0f)) == voxels.end())
         voxel_ib.insert(voxel_ib.end(), RIGHT_FACE, RIGHT_FACE + 6);
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, -2.0f, 0.0f)) == voxels.end())
+        voxel_ib.insert(voxel_ib.end(), DOWN_FACE, DOWN_FACE + 6);
 
     if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 2.0f, 0.0f)) == voxels.end())
         voxel_ib.insert(voxel_ib.end(), UP_FACE, UP_FACE + 6);
-
-    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(-2.0f, -2.0f, 0.0f)) == voxels.end())
-        voxel_ib.insert(voxel_ib.end(), DOWN_FACE, DOWN_FACE + 6);
 
     if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 0.0f, 2.0f)) == voxels.end())
         voxel_ib.insert(voxel_ib.end(), FORWARD_FACE, FORWARD_FACE + 6);
 
     if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 0.0f, -2.0f)) == voxels.end())
         voxel_ib.insert(voxel_ib.end(), BACKWARD_FACE, BACKWARD_FACE + 6);
+        std::cout << "voxel not found: " << glm::to_string(voxel) << std::endl;*/
+
+
+
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, -2.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), UP_FACE, UP_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 2.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), DOWN_FACE, DOWN_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 0.0f, 2.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), LEFT_FACE, LEFT_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 0.0f, -2.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), RIGHT_FACE, RIGHT_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(2.0f, 0.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), FORWARD_FACE, FORWARD_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(-2.0f, 0.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), BACKWARD_FACE, BACKWARD_FACE + 6);
+    }
+
+
 
     return voxel_ib;
 }
@@ -140,7 +182,7 @@ int main(void) {
         //layout.Push<float>(2); Pro textury
         va.AddBuffer(vb, layout);
 
-        IndexBuffer ib(indices, 36);
+        //IndexBuffer ib(indices, 36);
 
         Shader shader("res/shaders/basic.shader");
         shader.Bind();
@@ -152,7 +194,7 @@ int main(void) {
 
         va.Unbind();
         vb.Unbind();
-        ib.Unbind();
+        //ib.Unbind();
         shader.Unbind();
 
         Shader screenshader("res/shaders/frame.shader");
@@ -215,7 +257,7 @@ int main(void) {
         }*/
 
 
-        int magic_number = 5;
+        int magic_number = 10;
         std::vector<glm::vec3> cube;
         for (std::size_t x = 0; x < magic_number; x++) {
             for (std::size_t y = 0; y < magic_number; y++) {
@@ -226,10 +268,26 @@ int main(void) {
             }
         }
 
+        //cube.push_back(glm::vec3(0.0f, 0.0f, 4.0f));
+
 
         std::vector<glm::vec3> test;
         test.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
         test.push_back(glm::vec3(0.0f, 2.0f, 0.0f));
+        test.push_back(glm::vec3(0.0f, 2.0f, 2.0f));
+        test.push_back(glm::vec3(0.0f, 4.0f, 0.0f));
+        test.push_back(glm::vec3(0.0f, 0.0f, 2.0f));
+        test.push_back(glm::vec3(0.0f, 0.0f, 4.0f));
+        test.push_back(glm::vec3(2.0f, 0.0f, 0.0f));
+        test.push_back(glm::vec3(2.0f, 2.0f, 0.0f));
+        test.push_back(glm::vec3(4.0f, 0.0f, 0.0f));
+        test.push_back(glm::vec3(2.0f, 0.0f, 2.0f));
+        test.push_back(glm::vec3(0.0f, 0.0f, 8.0f));
+        test.push_back(glm::vec3(0.0f, 2.0f, 8.0f));
+        test.push_back(glm::vec3(0.0f, 0.0f, 10.0f));
+        test.push_back(glm::vec3(0.0f, 2.0f, 10.0f));
+        /*test.push_back(glm::vec3(0.0f, 2.0f, 0.0f));
+        test.push_back(glm::vec3(0.0f, 0.0f, 2.0f));*/
 
         /*for(int i=0; i<cube.size(); ++i)
             std::cout << glm::to_string(cube[i]) << std::endl;*/
@@ -283,11 +341,11 @@ int main(void) {
             //std::cout << glm::to_string(View) << std::endl;
             processInput(window);
 
-            glEnable(GL_CULL_FACE);
-            glCullFace(GL_BACK);
+            /*glEnable(GL_CULL_FACE);
+            glCullFace(GL_BACK*/
             //glFrontFace(GL_CW);
             
-            for (std::size_t i = 0; i < magic_number*magic_number*magic_number; i++) {
+            /*for (std::size_t i = 0; i < magic_number*magic_number*magic_number; i++) {
                 glEnable(GL_CULL_FACE);
                 glCullFace(GL_BACK);
                 glm::mat4 Model = glm::translate(glm::mat4(1.0f), cube[i]);
@@ -299,7 +357,7 @@ int main(void) {
                 va.Unbind();
                 ib.Unbind();
                 shader.Unbind();
-            }
+            }*/
 
             /*for (std::size_t i = 0; i < test.size(); i++) {
                 auto indicies_voxel = searchvoxel(test, test[i]);
@@ -319,33 +377,159 @@ int main(void) {
                 }
             }*/
 
-            /*for (std::size_t i = 0; i < test.size(); i++) {
-                std::vector<unsigned int> indices = searchvoxel(test, test[i]);
-                GLuint elementbuffer;
-                glGenBuffers(1, &elementbuffer);
-                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-                glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
-                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+            /*for (std::size_t i = 0; i < cube.size(); i++) {
+                std::vector<unsigned int> indices_voxel = searchvoxel(cube, cube[i]);
+                unsigned int size = indices_voxel.size();
 
-                // Draw the triangles !
-                glDrawElements(
-                    GL_TRIANGLES,      // mode
-                    indices.size(),    // count
-                    GL_UNSIGNED_INT,   // type
-                    (void*)0           // element array buffer offset
-                );
-                //IndexBuffer ib(indicies_voxel, indicies_voxel.size());
+                IndexBuffer ib(indices_voxel, size);
+                ib.Bind();
+                glm::mat4 Model = glm::translate(glm::mat4(1.0f), cube[i]);
+                glm::mat4 mvp = Projection * View * Model;
+                shader.Bind();
+                shader.SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+                shader.SetUniformMat4f("u_MVP", mvp);
+                renderer.Draw(va, ib, shader);
+                ib.Unbind();
+                shader.Unbind();
+                }*/
+
+            for (std::size_t i = 0; i < cube.size(); i++) {       //hgjkhgfdsasdfghjkjhgfdsasdfkjhgfdsaxcvbbvcxsdjjnvcdrtzjnbvcdrtzbvcdrtznbvc
+                std::vector<unsigned int> indices_voxel = searchvoxel(cube, cube[i]);
+                int size = indices_voxel.size();
+
+                if (0 < size) {
+                    IndexBuffer ib(indices_voxel, size);
+                    ib.Bind();
+                    glm::mat4 Model = glm::translate(glm::mat4(1.0f), cube[i]);
+                    glm::mat4 mvp = Projection * View * Model;
+                    shader.Bind();
+                    shader.SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+                    shader.SetUniformMat4f("u_MVP", mvp);
+                    renderer.Draw(va, ib, shader);
+                    ib.Unbind();
+                    shader.Unbind();
+                }
+            }
+                unsigned int UP_FACE[6] = { 4, 5, 0, 0, 5, 1 };
+                unsigned int DOWN_FACE[6] = { 3, 2, 7, 7, 2, 6 };
+                unsigned int BACKWARD_FACE[6] = { 4, 0, 7, 7, 0, 3 };
+                unsigned int RIGHT_FACE[6] = { 0, 1, 3, 3, 1, 2 };
+                unsigned int FORWARD_FACE[6] = { 1, 5, 2, 2, 5, 6 };
+                unsigned int LEFT_FACE[6] = { 5, 4, 6, 6, 4, 7 };
+
+                std::vector<unsigned int> tttt;
+                tttt.insert(tttt.end(), UP_FACE, UP_FACE + 6);
+                tttt.insert(tttt.end(), DOWN_FACE, DOWN_FACE + 6);
+                tttt.insert(tttt.end(), BACKWARD_FACE, BACKWARD_FACE + 6);
+                tttt.insert(tttt.end(), RIGHT_FACE, RIGHT_FACE + 6);
+                tttt.insert(tttt.end(), FORWARD_FACE, FORWARD_FACE + 6);
+
+            /*for (std::size_t i = 0; i < test.size(); i++) {       //hgjkhgfdsasdfghjkjhgfdsasdfkjhgfdsaxcvbbvcxsdjjnvcdrtzjnbvcdrtzbvcdrtznbvcdg
+                //std::vector<unsigned int> indices_voxel = searchvoxel(test, test[i]);
+                //int size = indices_voxel.size();
+
+                std::vector<unsigned int> dddd;
+
+                if (std::find(test.begin(), test.end(), test[i] + glm::vec3(0.0f, -2.0f, 0.0f)) == test.end()) {
+                    dddd.insert(dddd.end(), UP_FACE, UP_FACE + 6);
+                }
+
+                if (std::find(test.begin(), test.end(), test[i] + glm::vec3(0.0f, 2.0f, 0.0f)) == test.end()) {
+                    dddd.insert(dddd.end(), DOWN_FACE, DOWN_FACE + 6);
+                }
+
+                if (std::find(test.begin(), test.end(), test[i] + glm::vec3(0.0f, 0.0f, 2.0f)) == test.end()) {
+                    dddd.insert(dddd.end(), LEFT_FACE, LEFT_FACE + 6);
+                }
+
+                if (std::find(test.begin(), test.end(), test[i] + glm::vec3(0.0f, 0.0f, -2.0f)) == test.end()) {
+                    dddd.insert(dddd.end(), RIGHT_FACE, RIGHT_FACE + 6);
+                }
+
+                if (std::find(test.begin(), test.end(), test[i] + glm::vec3(2.0f, 0.0f, 0.0f)) == test.end()) {
+                    dddd.insert(dddd.end(), FORWARD_FACE, FORWARD_FACE + 6);
+                }
+
+                if (std::find(test.begin(), test.end(), test[i] + glm::vec3(-2.0f, 0.0f, 0.0f)) == test.end()) {
+                    dddd.insert(dddd.end(), BACKWARD_FACE, BACKWARD_FACE + 6);
+                }
+
+                IndexBuffer ib(dddd, dddd.size());
+                ib.Bind();
                 glm::mat4 Model = glm::translate(glm::mat4(1.0f), test[i]);
                 glm::mat4 mvp = Projection * View * Model;
                 shader.Bind();
                 shader.SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
                 shader.SetUniformMat4f("u_MVP", mvp);
-                //renderer.Draw(va, ib, shader);
-                //ib.Unbind();
+                renderer.Draw(va, ib, shader);
+                ib.Unbind();
+                shader.Unbind();
+            }*/
+
+            /*
+              stary
+
+
+            unsigned int RIGHT_FACE[6] = { 1, 5, 2, 2, 5, 6 };
+            unsigned int LEFT_FACE[6] = { 0, 1, 3, 3, 1, 2 };
+            unsigned int FORWARD_FACE[6] = { 5, 4, 6, 6, 4, 7 };
+            unsigned int BACKWARD_FACE[6] = { 4, 0, 7, 7, 0, 3 };
+            unsigned int DOWN_FACE[6] = { 3, 2, 7, 7, 2, 6 };
+            unsigned int UP_FACE[6] = { 4, 5, 0, 0, 5, 1 };
+            */
+
+            /*unsigned int RIGHT_FACE[6] = { 0, 1, 3, 3, 1, 2 };
+            unsigned int LEFT_FACE[6] = { 5, 4, 6, 6, 4, 7 };
+            unsigned int FORWARD_FACE[6] = { 1, 5, 2, 2, 5, 6 };
+            unsigned int BACKWARD_FACE[6] = { 4, 0, 7, 7, 0, 3 };
+            unsigned int UP_FACE[6] = { 3, 2, 7, 7, 2, 6 };
+            unsigned int DOWN_FACE[6] = { 4, 5, 0, 0, 5, 1 };
+
+            std::vector<unsigned int> testing;
+
+            testing.insert(testing.end(), RIGHT_FACE, RIGHT_FACE + 6);
+            testing.insert(testing.end(), LEFT_FACE, LEFT_FACE + 6);
+            testing.insert(testing.end(), FORWARD_FACE, FORWARD_FACE + 6);
+            testing.insert(testing.end(), BACKWARD_FACE, BACKWARD_FACE + 6);
+            testing.insert(testing.end(), UP_FACE, UP_FACE + 6);
+            testing.insert(testing.end(), DOWN_FACE, DOWN_FACE + 6);*/
+
+
+           /*
+               stary
+           
+            testing.insert(testing.end(), LEFT_FACE, LEFT_FACE + 6); // pravá   RIGHT
+
+            testing.insert(testing.end(), RIGHT_FACE, RIGHT_FACE + 6); //vpredu  FORWARD
+
+            testing.insert(testing.end(), UP_FACE, UP_FACE + 6); //dole DOWN
+
+            testing.insert(testing.end(), DOWN_FACE, DOWN_FACE + 6);  //nahore UP
+
+            testing.insert(testing.end(), FORWARD_FACE, FORWARD_FACE + 6); //leva  LEFT
+
+            testing.insert(testing.end(), BACKWARD_FACE, BACKWARD_FACE + 6); //vzadu  BACKWARD
+           */
+            
+            
+
+
+            /*for (std::size_t i = 0; i < test.size(); i++) {
+                unsigned int size = testing.size();
+
+                IndexBuffer ib(testing, size);
+                ib.Bind();
+                glm::mat4 Model = glm::translate(glm::mat4(1.0f), test[i]);
+                glm::mat4 mvp = Projection * View * Model;
+                shader.Bind();
+                shader.SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+                shader.SetUniformMat4f("u_MVP", mvp);
+                renderer.Draw(va, ib, shader);
+                ib.Unbind();
                 shader.Unbind();
                 }*/
 
-            //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
             glBindFramebuffer(GL_FRAMEBUFFER, 0);
