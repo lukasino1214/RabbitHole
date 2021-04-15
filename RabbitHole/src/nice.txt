@@ -1,0 +1,59 @@
+
+            /*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); (GL_FRAMEBUFFER, framebuffer); //z framebufferu
+
+            GLCall(glBindFramebuffer(GL_FRAMEBUFFER, framebuffer));
+            glEnable(GL_DEPTH_TEST); // z framebufferu*/
+
+
+            /*glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); (GL_FRAMEBUFFER, framebuffer);*/
+            
+
+
+            kod
+
+
+
+            
+            /*glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+            glDisable(GL_DEPTH_TEST);
+
+            glClear(GL_COLOR_BUFFER_BIT);
+
+            
+            /*glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+            glDisable(GL_DEPTH_TEST);
+
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); (GL_FRAMEBUFFER, framebuffer);*/
+            /*GLuint my_opengl_texture; generogani textury nefunguje :kekw:
+            glGenTextures(1, &my_opengl_texture);*/
+
+
+            /*glm::mat4 Model = glm::translate(glm::mat4(1.0f), translation);
+            glm::mat4 mvp = Projection * View * Model;
+
+
+            shader.Bind();
+            shader.SetUniformMat4f("u_MVP", mvp);
+
+            renderer.Draw(va, ib, shader);
+
+            /*glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+            glDisable(GL_DEPTH_TEST);
+
+            glClear(GL_COLOR_BUFFER_BIT);*/
+
+            /*if (r > 1.0f)
+                increment = -0.05f;
+            else if (r < 0.0f)
+                increment = 0.05f;
+
+            r += increment;*/
+
+            //ImGui::Image((void*)(intptr_t)my_opengl_texture, ImVec2(512, 512)); opengl textura z framebufferu
+
+
+
+
+            for (int i = 0; i < cube.size(); ++i)
+            std::cout << cube.at(i) << ' ';

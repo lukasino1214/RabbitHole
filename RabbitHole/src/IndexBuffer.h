@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class IndexBuffer {
 private:
@@ -6,6 +7,7 @@ private:
 	unsigned int m_Count;
 
 public:
+	//IndexBuffer(std::vector<unsigned int>* data, unsigned int count);
 	IndexBuffer(const unsigned int* data, unsigned int count);
 	~IndexBuffer();
 
