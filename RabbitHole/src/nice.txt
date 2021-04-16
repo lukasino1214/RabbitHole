@@ -57,3 +57,34 @@
 
             for (int i = 0; i < cube.size(); ++i)
             std::cout << cube.at(i) << ' ';
+
+            /*std::vector<unsigned int> searchvoxel(std::vector<glm::vec3> voxels, glm::vec3 voxel) {
+
+    std::vector<unsigned int> voxel_ib;
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, -2.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), UP_FACE, UP_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 2.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), DOWN_FACE, DOWN_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 0.0f, 2.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), LEFT_FACE, LEFT_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(0.0f, 0.0f, -2.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), RIGHT_FACE, RIGHT_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(2.0f, 0.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), FORWARD_FACE, FORWARD_FACE + 6);
+    }
+
+    if (std::find(voxels.begin(), voxels.end(), voxel + glm::vec3(-2.0f, 0.0f, 0.0f)) == voxels.end()) {
+        voxel_ib.insert(voxel_ib.end(), BACKWARD_FACE, BACKWARD_FACE + 6);
+    }
+
+    return voxel_ib;
+}*/
